@@ -229,7 +229,7 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 					}else{
 					        std::vector<std::string> tokens;
                                                 boost::split(tokens, v, boost::is_any_of("\t "));
-                                                if(my_utils::is_number(tokens[1]){
+                                                if(my_utils::is_number(tokens[1])){
                                                         if(tokens[2] == "mph")
                                                                 mspeed_backwd = (int)(1.609*(double)atoi(tokens[1]));
 							else{
@@ -254,8 +254,7 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 					}else{
                                                 std::vector<std::string> tokens;
                                                 boost::split(tokens, v, boost::is_any_of("\t "));
-                                                if(my_utils::is_number(tokens[1])
-                                                {
+                                                if(my_utils::is_number(tokens[1])){
                                                         if(tokens[2] == "mph")
 							{
                                                                 mspeed_fwd = (int)(1.609*(double)atoi(tokens[1]));
