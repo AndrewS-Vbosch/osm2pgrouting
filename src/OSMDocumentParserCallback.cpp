@@ -208,7 +208,7 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 						boost::split(tokens, v, boost::is_any_of("\t "));
 						if(my_utils::is_number(tokens[1])){
 							if(tokens[2] == "mph")
-								mspeed_fwd = (int)(1.609*(double)atoi(tokens[1]));
+								mspeed_fwd = (int)(1.609L * lexical_cast<double>(tokens[1]));
 							else{
 								//TODO: handle knots
 								std::cout<<"unknown maxspeed value: "<<v<<std::endl;
@@ -231,7 +231,7 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
                                                 boost::split(tokens, v, boost::is_any_of("\t "));
                                                 if(my_utils::is_number(tokens[1])){
                                                         if(tokens[2] == "mph")
-                                                                mspeed_backwd = (int)(1.609*(double)atoi(tokens[1]));
+                                                                mspeed_backwd = (int)(1.609L * lexical_cast<double>(tokens[1]));
 							else{
 								//TODO: handle knots
 								std::cout<<"unknown maxspeed value: "<<v<<std::endl;
@@ -257,7 +257,7 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
                                                 if(my_utils::is_number(tokens[1])){
                                                         if(tokens[2] == "mph")
 							{
-                                                                mspeed_fwd = (int)(1.609*(double)atoi(tokens[1]));
+                                                                mspeed_fwd = (int)(1.609L * lexical_cast<double>(tokens[1]));
 								mspeed_backwd = mspeed_fwd;
                                                 	}else{
 								//TODO: handle knots
