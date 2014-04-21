@@ -204,8 +204,20 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 					if(my_utils::is_number(v)){
 						mspeed_fwd = atoi(v.c_str());
 					}else{
-						//TODO: handle non-numeric values, ex.: RO:urban
-						std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+						std::vector<std::string> tokens;
+						boost::split(tokens, v, boost::is_any_of("\t "));
+						if(my_utils::is_number(tokens[1])
+						{
+							if(tokens[2] == "mph")
+								mspeed_fwd = (int)(1.609*(double)atoi(tokens[1]));
+							else{
+								//TODO: handle knots
+								std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+							}
+						}else{
+							//TODO: handle non-numeric values, ex.: RO:urban
+							std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+						}
 					}
 					m_pActWay->maxspeed_forward = mspeed_fwd;
 				}
@@ -216,8 +228,21 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 					if(my_utils::is_number(v)){
 						mspeed_backwd = atoi(v.c_str());
 					}else{
-						//TODO: handle non-numeric values, ex.: RO:urban
-						std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+					        std::vector<std::string> tokens;
+                                                boost::split(tokens, v, boost::is_any_of("\t "));
+                                                if(my_utils::is_number(tokens[1])
+                                                {
+                                                        if(tokens[2] == "mph")
+                                                                mspeed_backwd = (int)(1.609*(double)atoi(tokens[1]));
+							else{
+								//TODO: handle knots
+								std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+							}
+                                                }else{
+                                                        //TODO: handle non-numeric values, ex.: RO:urban
+                                                        std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+                                                }
+
 					}
 					m_pActWay->maxspeed_backward= mspeed_backwd;
 				}
@@ -229,8 +254,22 @@ void OSMDocumentParserCallback::StartElement( const char *name, const char** att
 						mspeed_fwd = atoi(v.c_str());
 						mspeed_backwd = atoi(v.c_str());
 					}else{
-						//TODO: handle non-numeric values, ex.: RO:urban
-						std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+                                                std::vector<std::string> tokens;
+                                                boost::split(tokens, v, boost::is_any_of("\t "));
+                                                if(my_utils::is_number(tokens[1])
+                                                {
+                                                        if(tokens[2] == "mph")
+							{
+                                                                mspeed_fwd = (int)(1.609*(double)atoi(tokens[1]));
+								mspeed_backwd = mspeed_fwd;
+                                                	}else{
+								//TODO: handle knots
+								std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+							}
+						}else{
+                                                        //TODO: handle non-numeric values, ex.: RO:urban
+                                                        std::cout<<"unknown maxspeed value: "<<v<<std::endl;
+                                                }
 					}
 					m_pActWay->maxspeed_backward= mspeed_backwd;
 					m_pActWay->maxspeed_forward=mspeed_fwd;
